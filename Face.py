@@ -11,8 +11,8 @@ def extract_index_nparray(nparray):
     return index
 
 
-img = cv2.imread('Korwin.png')
-img2 = cv2.imread('Mua.jpg')
+img = cv2.imread('Joker.png')
+img2 = cv2.imread('Korwin.png')
 img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 img2_gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 mask = np.zeros_like(img_gray)
@@ -148,10 +148,11 @@ img2_face_mask = cv2.bitwise_not(img2_head_mask)
 img2_head_noface = cv2.bitwise_and(img2, img2, mask=img2_face_mask)
 result = cv2.add(img2_head_noface, img2_new_face)
 
+# Smoothing transition of images
 (x, y, w, h) = cv2.boundingRect(convexhull2)
 center_face2 = (int((x + x + w) / 2), int((y + y + h) / 2))
 
-seamlessclone = cv2.seamlessClone(result, img2, img2_head_mask, center_face2, cv2.NORMAL_CLONE)
+final_face = cv2.seamlessClone(result, img2, img2_head_mask, center_face2, cv2.NORMAL_CLONE)
 
-cv2.imshow("seamlessclone", seamlessclone)
+cv2.imshow("Final face", final_face)
 cv2.waitKey(0)
