@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import dlib
 
-
 def extract_index_nparray(nparray):
     index = None
     for num in nparray[0]:
@@ -10,15 +9,15 @@ def extract_index_nparray(nparray):
         break
     return index
 
-img = cv2.imread('Maklowicz.jpg')
+img = cv2.imread('TestPhotos/Korwin.png')
 img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 mask = np.zeros_like(img_gray)
 
-work_mode = 1
+work_mode = 0
 if work_mode == 1:
     cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 else:
-    img2 = cv2.imread('Walesa.jpg')
+    img2 = cv2.imread('Mua.jpg')
     img2_gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
     img2_new_face = np.zeros_like(img2)
     height, width, channels = img2.shape
